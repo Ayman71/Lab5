@@ -6,6 +6,7 @@ package FronEnd;
 
 import Info.LoginInfo;
 import java.awt.Color;
+import java.io.FileNotFoundException;
 import javax.swing.JOptionPane;
 
 /**
@@ -131,21 +132,23 @@ public class StudentLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         String Username = jTextField1.getText();
-        String Password = jTextField2.getText();
-        if (Username.equals(LoginInfo.Username)&&
-        Password.equals(LoginInfo.Password)) 
-        {
-          
-      HomeWindow homeWindow = new HomeWindow();
-        homeWindow.setVisible(true);
-        this.setVisible(false);
-        
-            
-        }else
-        {
-             JOptionPane.showMessageDialog(this, "Wrong username or password. Please try again.");
-        }        // TODO add your handling code here:
+        String userName = jTextField1.getText();
+        String password = jTextField2.getText();
+        try{
+            LoginInfo loginInfo = new LoginInfo();
+        if (loginInfo.validateLogin(userName, password)) {
+
+            MainFrame mainFrame = new MainFrame();
+            mainFrame.setVisible(true);
+            this.setVisible(false);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Wrong username or password. Please try again.");
+        }
+        }catch(FileNotFoundException e){
+            JOptionPane.showMessageDialog(this, "File not found");
+        }
+                // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -15,6 +15,8 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        this.setSize(1000, 600);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -26,24 +28,155 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        mainPanel = new javax.swing.JPanel();
+        viewPanel = new javax.swing.JPanel();
+        addPanel = new javax.swing.JPanel();
+        removePanel = new javax.swing.JPanel();
+        modifyPanel = new javax.swing.JPanel();
+        searchPanel = new javax.swing.JPanel();
+        sidePanel = new javax.swing.JPanel();
+        viewButton = new java.awt.Button();
+        addButton = new java.awt.Button();
+        removeButton = new java.awt.Button();
+        updateButton = new java.awt.Button();
+        searchButton = new java.awt.Button();
+        logoutButton = new java.awt.Button();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+        mainPanel.setBackground(new java.awt.Color(204, 204, 204));
+        mainPanel.setForeground(new java.awt.Color(255, 51, 0));
+        mainPanel.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout viewPanelLayout = new javax.swing.GroupLayout(viewPanel);
+        viewPanel.setLayout(viewPanelLayout);
+        viewPanelLayout.setHorizontalGroup(
+            viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 851, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+        viewPanelLayout.setVerticalGroup(
+            viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 536, Short.MAX_VALUE)
         );
+
+        mainPanel.add(viewPanel, "card2");
+
+        javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
+        addPanel.setLayout(addPanelLayout);
+        addPanelLayout.setHorizontalGroup(
+            addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 851, Short.MAX_VALUE)
+        );
+        addPanelLayout.setVerticalGroup(
+            addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 536, Short.MAX_VALUE)
+        );
+
+        mainPanel.add(addPanel, "card3");
+
+        javax.swing.GroupLayout removePanelLayout = new javax.swing.GroupLayout(removePanel);
+        removePanel.setLayout(removePanelLayout);
+        removePanelLayout.setHorizontalGroup(
+            removePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 851, Short.MAX_VALUE)
+        );
+        removePanelLayout.setVerticalGroup(
+            removePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 536, Short.MAX_VALUE)
+        );
+
+        mainPanel.add(removePanel, "card4");
+
+        javax.swing.GroupLayout modifyPanelLayout = new javax.swing.GroupLayout(modifyPanel);
+        modifyPanel.setLayout(modifyPanelLayout);
+        modifyPanelLayout.setHorizontalGroup(
+            modifyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 851, Short.MAX_VALUE)
+        );
+        modifyPanelLayout.setVerticalGroup(
+            modifyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 536, Short.MAX_VALUE)
+        );
+
+        mainPanel.add(modifyPanel, "card5");
+
+        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
+        searchPanel.setLayout(searchPanelLayout);
+        searchPanelLayout.setHorizontalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 851, Short.MAX_VALUE)
+        );
+        searchPanelLayout.setVerticalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 536, Short.MAX_VALUE)
+        );
+
+        mainPanel.add(searchPanel, "card6");
+
+        getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
+
+        sidePanel.setBackground(new java.awt.Color(204, 204, 204));
+        sidePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        sidePanel.setForeground(new java.awt.Color(0, 153, 204));
+        sidePanel.setPreferredSize(new java.awt.Dimension(120, 0));
+        sidePanel.setLayout(new javax.swing.BoxLayout(sidePanel, javax.swing.BoxLayout.Y_AXIS));
+
+        viewButton.setActionCommand("View sturdents");
+        viewButton.setLabel("View");
+        viewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButtonActionPerformed(evt);
+            }
+        });
+        sidePanel.add(viewButton);
+
+        addButton.setLabel("Add");
+        sidePanel.add(addButton);
+
+        removeButton.setLabel("Remove");
+        sidePanel.add(removeButton);
+
+        updateButton.setLabel("Modify");
+        sidePanel.add(updateButton);
+
+        searchButton.setLabel("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+        sidePanel.add(searchButton);
+
+        logoutButton.setLabel("Logout");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
+        sidePanel.add(logoutButton);
+
+        getContentPane().add(sidePanel, java.awt.BorderLayout.WEST);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewButtonActionPerformed
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        // TODO add your handling code here:
+        StudentLogin studentLogin = new StudentLogin();
+        this.setVisible(false);
+        studentLogin.setVisible(true);
+    }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -81,5 +214,18 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button addButton;
+    private javax.swing.JPanel addPanel;
+    private java.awt.Button logoutButton;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel modifyPanel;
+    private java.awt.Button removeButton;
+    private javax.swing.JPanel removePanel;
+    private java.awt.Button searchButton;
+    private javax.swing.JPanel searchPanel;
+    private javax.swing.JPanel sidePanel;
+    private java.awt.Button updateButton;
+    private java.awt.Button viewButton;
+    private javax.swing.JPanel viewPanel;
     // End of variables declaration//GEN-END:variables
 }

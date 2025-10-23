@@ -43,6 +43,7 @@ public class StudentLogin extends javax.swing.JFrame {
         setTitle("Student Managment System");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setLocation(new java.awt.Point(0, 0));
+        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         jLabel2.setBackground(new java.awt.Color(204, 255, 255));
@@ -148,21 +149,23 @@ public class StudentLogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String userName = jTextField1.getText();
         String password = jPasswordField1.getText();
-        try{
+        try {
             LoginInfo loginInfo = new LoginInfo();
-        if (loginInfo.validateLogin(userName, password)) {
+            if (loginInfo.validateLogin(userName, password)) {
 
-            MainFrame mainFrame = new MainFrame();
-            this.setVisible(false);
-            mainFrame.setVisible(true);
-            
-        } else {
-            JOptionPane.showMessageDialog(this, "Wrong username or password. Please try again.");
+                MainFrame mainFrame = new MainFrame();
+                this.setVisible(false);
+                mainFrame.setVisible(true);
+
+            } else if (userName.equals("") || password.equals("")) {
+                JOptionPane.showMessageDialog(this, "Empty feild detected! please try again.", "Login Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid username or password! please try again.", "Login Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(this, "File not found", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(this, "File not found");
-        }
-                // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
@@ -171,10 +174,9 @@ public class StudentLogin extends javax.swing.JFrame {
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
-        if(jCheckBox1.isSelected()){
+        if (jCheckBox1.isSelected()) {
             jPasswordField1.setEchoChar((char) 0);
-        }else
-        {
+        } else {
             jPasswordField1.setEchoChar('*');
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed

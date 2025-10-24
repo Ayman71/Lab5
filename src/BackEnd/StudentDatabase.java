@@ -4,7 +4,6 @@
  */
 package BackEnd;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 /**
@@ -12,12 +11,12 @@ import java.util.ArrayList;
  * @author islam
  */
 public interface StudentDatabase {
-    void addStudent(Student student) throws IOException;
-    boolean deleteStudent(int studentId);
+    boolean addStudent(Student student) throws IOException, ClassNotFoundException;
+    boolean deleteStudent(int studentId) throws IOException;
     boolean updateStudent(int studentId, Student updatedStudent) throws IOException;
     Student searchStudentById(int studentId);
     ArrayList<Student> searchStudentByName(String name);
     ArrayList<Student> getAllStudents();
-    void savetData(String filename) throws IOException;
-    void loadData(String filename) throws IOException, ClassNotFoundException;
+    void saveStudentData() throws IOException;
+    void loadStudentData() throws IOException, ClassNotFoundException;
 }

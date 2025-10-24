@@ -4,6 +4,12 @@
  */
 package FrontEnd;
 
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Ayman
@@ -13,8 +19,27 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
+    private DefaultTableModel studentsTableModel;
+    TableRowSorter<DefaultTableModel> sorter;
+    
     public MainFrame() {
         initComponents();
+        this.setSize(1000, 600);
+        this.setLocationRelativeTo(null);
+        mainPanel.add(viewPanel, "view");
+        mainPanel.add(addPanel, "add");
+        mainPanel.add(removePanel, "remove");
+        mainPanel.add(modifyPanel, "modify");
+        mainPanel.add(searchPanel, "search");
+        studentsTableModel = (DefaultTableModel) addStudentsTable.getModel();
+        sorter = new TableRowSorter<>(studentsTableModel);
+        viewStudentsTable.setModel(studentsTableModel);
+        addStudentsTable.setModel(studentsTableModel);
+        searchStudentsTable.setModel(studentsTableModel);
+        removeStudentsTable.setModel(studentsTableModel);
+        modifyStudentsTable.setModel(studentsTableModel);
+        searchStudentsTable.setRowSorter(sorter);
+        
     }
 
     /**
@@ -26,24 +51,913 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        mainPanel = new javax.swing.JPanel();
+        viewPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        viewStudentsTable = new javax.swing.JTable();
+        addPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        addStudentButton = new javax.swing.JButton();
+        clearFormButton = new javax.swing.JButton();
+        idField = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        genderComboBox = new javax.swing.JComboBox<>();
+        ageField = new javax.swing.JTextField();
+        departmentField = new javax.swing.JTextField();
+        gpaField = new javax.swing.JTextField();
+        nameField = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        addStudentsTable = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        removePanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        removeStudentsTable = new javax.swing.JTable();
+        removeStudentButton = new javax.swing.JButton();
+        modifyPanel = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        modifyStudentsTable = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        updateStudentButton = new javax.swing.JButton();
+        clearFormButton1 = new javax.swing.JButton();
+        idField1 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        genderComboBox1 = new javax.swing.JComboBox<>();
+        ageField1 = new javax.swing.JTextField();
+        departmentField1 = new javax.swing.JTextField();
+        gpaField1 = new javax.swing.JTextField();
+        nameField1 = new javax.swing.JTextField();
+        searchPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        searchStudentsTable = new javax.swing.JTable();
+        searchField = new javax.swing.JTextField();
+        sidePanel = new javax.swing.JPanel();
+        viewButton = new java.awt.Button();
+        addButton = new java.awt.Button();
+        removeButton = new java.awt.Button();
+        modifyButton = new java.awt.Button();
+        searchButton = new java.awt.Button();
+        logoutButton = new java.awt.Button();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+        mainPanel.setBackground(new java.awt.Color(204, 204, 204));
+        mainPanel.setForeground(new java.awt.Color(255, 51, 0));
+        mainPanel.setLayout(new java.awt.CardLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Student managment System");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("List of Students");
+
+        viewStudentsTable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        viewStudentsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "Age", "Gender", "Department", "GPA"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        viewStudentsTable.setFocusable(false);
+        viewStudentsTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane5.setViewportView(viewStudentsTable);
+
+        javax.swing.GroupLayout viewPanelLayout = new javax.swing.GroupLayout(viewPanel);
+        viewPanel.setLayout(viewPanelLayout);
+        viewPanelLayout.setHorizontalGroup(
+            viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewPanelLayout.createSequentialGroup()
+                .addGap(251, 251, 251)
+                .addGroup(viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(296, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+        viewPanelLayout.setVerticalGroup(
+            viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewPanelLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
+
+        mainPanel.add(viewPanel, "card2");
+
+        jPanel1.setForeground(new java.awt.Color(204, 204, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        addStudentButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        addStudentButton.setText("ADD");
+        addStudentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addStudentButtonActionPerformed(evt);
+            }
+        });
+
+        clearFormButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        clearFormButton.setText("CLEAR");
+        clearFormButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearFormButtonActionPerformed(evt);
+            }
+        });
+
+        idField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        idField.setToolTipText("");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setText("ID:");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setText("Full Name:");
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setText("Age:");
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setText("Gender:");
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setText("Department:");
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setText("GPA:");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setText("Add New Student");
+
+        genderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+        genderComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genderComboBoxActionPerformed(evt);
+            }
+        });
+
+        ageField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ageField.setToolTipText("");
+
+        departmentField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        departmentField.setToolTipText("");
+
+        gpaField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        gpaField.setToolTipText("");
+
+        nameField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        nameField.setToolTipText("");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel5)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(addStudentButton)
+                                    .addGap(49, 49, 49)
+                                    .addComponent(clearFormButton))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel13)
+                                        .addComponent(jLabel14))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(gpaField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(departmentField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel4)))
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jLabel4)
+                .addGap(34, 34, 34)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(departmentField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(gpaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clearFormButton)
+                    .addComponent(addStudentButton))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 320, -1));
+
+        addStudentsTable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        addStudentsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "Age", "Gender", "Department", "GPA"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        addStudentsTable.setFocusable(false);
+        addStudentsTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(addStudentsTable);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 530, 490));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Student managment System");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
+        addPanel.setLayout(addPanelLayout);
+        addPanelLayout.setHorizontalGroup(
+            addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addPanelLayout.createSequentialGroup()
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addPanelLayout.createSequentialGroup()
+                        .addGap(299, 299, 299)
+                        .addComponent(jLabel2))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        addPanelLayout.setVerticalGroup(
+            addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addPanelLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jLabel2.getAccessibleContext().setAccessibleDescription("");
+
+        mainPanel.add(addPanel, "card3");
+
+        removeStudentsTable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        removeStudentsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "Age", "Gender", "Department", "GPA"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        removeStudentsTable.setFocusable(false);
+        removeStudentsTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(removeStudentsTable);
+
+        removeStudentButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        removeStudentButton.setText("Remove");
+        removeStudentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeStudentButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout removePanelLayout = new javax.swing.GroupLayout(removePanel);
+        removePanel.setLayout(removePanelLayout);
+        removePanelLayout.setHorizontalGroup(
+            removePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, removePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(removePanelLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(removeStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        removePanelLayout.setVerticalGroup(
+            removePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(removePanelLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(removeStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        mainPanel.add(removePanel, "card4");
+
+        modifyStudentsTable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        modifyStudentsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "Age", "Gender", "Department", "GPA"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        modifyStudentsTable.setFocusable(false);
+        modifyStudentsTable.getTableHeader().setReorderingAllowed(false);
+        modifyStudentsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modifyStudentsTableMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(modifyStudentsTable);
+
+        updateStudentButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        updateStudentButton.setText("Update");
+        updateStudentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateStudentButtonActionPerformed(evt);
+            }
+        });
+
+        clearFormButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        clearFormButton1.setText("Clear");
+        clearFormButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearFormButton1ActionPerformed(evt);
+            }
+        });
+
+        idField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        idField1.setToolTipText("");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setText("ID:");
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel15.setText("Full Name:");
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel16.setText("Age:");
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel17.setText("Gender:");
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel18.setText("Department:");
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel19.setText("GPA:");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel7.setText("Modify Student");
+
+        genderComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+        genderComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genderComboBox1ActionPerformed(evt);
+            }
+        });
+
+        ageField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ageField1.setToolTipText("");
+
+        departmentField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        departmentField1.setToolTipText("");
+
+        gpaField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        gpaField1.setToolTipText("");
+
+        nameField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        nameField1.setToolTipText("");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel6)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(updateStudentButton)
+                                    .addGap(49, 49, 49)
+                                    .addComponent(clearFormButton1))
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel18)
+                                        .addComponent(jLabel19))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(gpaField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(genderComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(departmentField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ageField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(nameField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(idField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel7)))
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jLabel7)
+                .addGap(34, 34, 34)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(idField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(nameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(ageField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(genderComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(departmentField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(gpaField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clearFormButton1)
+                    .addComponent(updateStudentButton))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout modifyPanelLayout = new javax.swing.GroupLayout(modifyPanel);
+        modifyPanel.setLayout(modifyPanelLayout);
+        modifyPanelLayout.setHorizontalGroup(
+            modifyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyPanelLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
+                .addGap(17, 17, 17))
+        );
+        modifyPanelLayout.setVerticalGroup(
+            modifyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modifyPanelLayout.createSequentialGroup()
+                .addContainerGap(46, Short.MAX_VALUE)
+                .addGroup(modifyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyPanelLayout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
+        );
+
+        mainPanel.add(modifyPanel, "card5");
+
+        searchStudentsTable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        searchStudentsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "Age", "Gender", "Department", "GPA"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        searchStudentsTable.setFocusable(false);
+        searchStudentsTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(searchStudentsTable);
+
+        searchField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        searchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchFieldKeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
+        searchPanel.setLayout(searchPanelLayout);
+        searchPanelLayout.setHorizontalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addGap(232, 232, 232)
+                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        searchPanelLayout.setVerticalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        mainPanel.add(searchPanel, "card6");
+
+        getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
+
+        sidePanel.setBackground(new java.awt.Color(204, 204, 204));
+        sidePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        sidePanel.setForeground(new java.awt.Color(0, 153, 204));
+        sidePanel.setPreferredSize(new java.awt.Dimension(120, 0));
+        sidePanel.setLayout(new javax.swing.BoxLayout(sidePanel, javax.swing.BoxLayout.Y_AXIS));
+
+        viewButton.setActionCommand("View sturdents");
+        viewButton.setLabel("View");
+        viewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButtonActionPerformed(evt);
+            }
+        });
+        sidePanel.add(viewButton);
+
+        addButton.setLabel("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+        sidePanel.add(addButton);
+
+        removeButton.setLabel("Remove");
+        removeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeButtonActionPerformed(evt);
+            }
+        });
+        sidePanel.add(removeButton);
+
+        modifyButton.setLabel("Modify");
+        modifyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyButtonActionPerformed(evt);
+            }
+        });
+        sidePanel.add(modifyButton);
+
+        searchButton.setLabel("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+        sidePanel.add(searchButton);
+
+        logoutButton.setLabel("Logout");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
+        sidePanel.add(logoutButton);
+
+        getContentPane().add(sidePanel, java.awt.BorderLayout.WEST);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
+        // TODO add your handling code here:
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "view");
+    }//GEN-LAST:event_viewButtonActionPerformed
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        // TODO add your handling code here:
+        StudentLogin studentLogin = new StudentLogin();
+        this.setVisible(false);
+        studentLogin.setVisible(true);
+    }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        // TODO add your handling code here:
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "search");
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "add");
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+        // TODO add your handling code here:
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "remove");
+    }//GEN-LAST:event_removeButtonActionPerformed
+
+    private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
+        // TODO add your handling code here:
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "modify");
+    }//GEN-LAST:event_modifyButtonActionPerformed
+
+    private void genderComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_genderComboBoxActionPerformed
+
+    private void addStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentButtonActionPerformed
+        // TODO add your handling code here:
+        String idText = idField.getText().trim();
+        String name = nameField.getText().trim();
+        String ageText = ageField.getText().trim();
+        String gender = genderComboBox.getSelectedItem().toString().trim();
+        String department = departmentField.getText().trim();
+        String gpaText = gpaField.getText().trim();
+
+        if (idText.isEmpty() || name.isEmpty() || ageText.isEmpty() || gender.isEmpty() || department.isEmpty() || gpaText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "All fields are required!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int id, age;
+        double gpa;
+
+        try {
+            id = Integer.parseInt(idText);
+            age = Integer.parseInt(ageText);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ID & Age must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            idField.setText("");
+            ageField.setText("");
+            return;
+        }
+        try {
+            gpa = Double.parseDouble(gpaText);
+            if (gpa < 0.0 || gpa > 4.0) {
+                JOptionPane.showMessageDialog(this, "GPA must be between 0 & 4.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                gpaField.setText("");
+                return;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "GPA must contain only digits and point.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            gpaField.setText("");
+            return;
+        }
+        studentsTableModel.addRow(new Object[]{id, name, age, gender, department, gpa});
+        JOptionPane.showMessageDialog(this, "Student Added Successfully!", "Student Added", JOptionPane.INFORMATION_MESSAGE);
+        clearFormButtonActionPerformed(evt);
+
+    }//GEN-LAST:event_addStudentButtonActionPerformed
+
+    private void clearFormButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFormButtonActionPerformed
+        // TODO add your handling code here:
+        idField.setText("");
+        nameField.setText("");
+        ageField.setText("");
+        genderComboBox.setSelectedIndex(0);
+        departmentField.setText("");
+        gpaField.setText("");
+
+    }//GEN-LAST:event_clearFormButtonActionPerformed
+
+    private void removeStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeStudentButtonActionPerformed
+        // TODO add your handling code here:
+        if (removeStudentsTable.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a student to remove.", "Selection Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int choice = JOptionPane.showConfirmDialog(this, "Are you sure you want to remove this studen?", "Confirm Removal", JOptionPane.YES_NO_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+            studentsTableModel.removeRow(removeStudentsTable.getSelectedRow());
+        }
+    }//GEN-LAST:event_removeStudentButtonActionPerformed
+
+    private void updateStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStudentButtonActionPerformed
+        // TODO add your handling code here:
+        String idText = idField1.getText().trim();
+        String name = nameField1.getText().trim();
+        String ageText = ageField1.getText().trim();
+        String gender = genderComboBox1.getSelectedItem().toString().trim();
+        String department = departmentField1.getText().trim();
+        String gpaText = gpaField1.getText().trim();
+
+        if (idText.isEmpty() || name.isEmpty() || ageText.isEmpty() || gender.isEmpty() || department.isEmpty() || gpaText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "All fields are required!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int id, age;
+        double gpa;
+
+        try {
+            id = Integer.parseInt(idText);
+            age = Integer.parseInt(ageText);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ID & Age must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            idField1.setText("");
+            ageField1.setText("");
+            return;
+        }
+        try {
+            gpa = Double.parseDouble(gpaText);
+            if (gpa < 0.0 || gpa > 4.0) {
+                JOptionPane.showMessageDialog(this, "GPA must be between 0 & 4.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                gpaField1.setText("");
+                return;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "GPA must contain only digits and point.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            gpaField1.setText("");
+            return;
+        }
+//        studentsTableModel.addRow(new Object[]{id, name, age, gender, department, gpa});
+//        JOptionPane.showMessageDialog(this, "Student Added Successfully!", "Student Added", JOptionPane.INFORMATION_MESSAGE);
+//        clearFormButtonActionPerformed(evt);
+        int selectedRow = modifyStudentsTable.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a student to update.");
+            return;
+        }
+
+        int row = modifyStudentsTable.convertRowIndexToModel(selectedRow);
+        
+
+        studentsTableModel.setValueAt(Integer.parseInt(idField1.getText()), row, 0);
+        studentsTableModel.setValueAt(nameField1.getText(), row, 1);
+        studentsTableModel.setValueAt(Integer.parseInt(ageField1.getText()), row, 2);
+        studentsTableModel.setValueAt(genderComboBox1.getSelectedItem().toString().trim(), row, 3);
+        studentsTableModel.setValueAt(departmentField1.getText(), row, 4);
+        studentsTableModel.setValueAt(Double.parseDouble(gpaField1.getText()), row, 5);
+
+        JOptionPane.showMessageDialog(this, "Student updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        clearFormButtonActionPerformed(evt);
+
+    }//GEN-LAST:event_updateStudentButtonActionPerformed
+
+    private void clearFormButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFormButton1ActionPerformed
+        // TODO add your handling code here:
+        idField.setText("");
+        nameField.setText("");
+        ageField.setText("");
+        genderComboBox.setSelectedIndex(0);
+        departmentField.setText("");
+        gpaField.setText("");
+    }//GEN-LAST:event_clearFormButton1ActionPerformed
+
+    private void genderComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_genderComboBox1ActionPerformed
+
+    private void modifyStudentsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyStudentsTableMouseClicked
+        // TODO add your handling code here:
+        int row = modifyStudentsTable.getSelectedRow();
+        if (row != -1) {
+            idField1.setText(studentsTableModel.getValueAt(row, 0).toString());
+            nameField1.setText(studentsTableModel.getValueAt(row, 1).toString());
+            ageField1.setText(studentsTableModel.getValueAt(row, 2).toString());
+            genderComboBox1.setSelectedItem(studentsTableModel.getValueAt(row, 3));
+            departmentField1.setText(studentsTableModel.getValueAt(row, 4).toString());
+            gpaField1.setText(studentsTableModel.getValueAt(row, 5).toString());
+        }
+        
+    }//GEN-LAST:event_modifyStudentsTableMouseClicked
+
+    private void searchFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyReleased
+        // TODO add your handling code here:
+        sorter.setRowFilter(RowFilter.regexFilter("(?i)"+searchField.getText()));
+    }//GEN-LAST:event_searchFieldKeyReleased
 
     /**
      * @param args the command line arguments
@@ -81,5 +995,66 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button addButton;
+    private javax.swing.JPanel addPanel;
+    private javax.swing.JButton addStudentButton;
+    private javax.swing.JTable addStudentsTable;
+    private javax.swing.JTextField ageField;
+    private javax.swing.JTextField ageField1;
+    private javax.swing.JButton clearFormButton;
+    private javax.swing.JButton clearFormButton1;
+    private javax.swing.JTextField departmentField;
+    private javax.swing.JTextField departmentField1;
+    private javax.swing.JComboBox<String> genderComboBox;
+    private javax.swing.JComboBox<String> genderComboBox1;
+    private javax.swing.JTextField gpaField;
+    private javax.swing.JTextField gpaField1;
+    private javax.swing.JTextField idField;
+    private javax.swing.JTextField idField1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private java.awt.Button logoutButton;
+    private javax.swing.JPanel mainPanel;
+    private java.awt.Button modifyButton;
+    private javax.swing.JPanel modifyPanel;
+    private javax.swing.JTable modifyStudentsTable;
+    private javax.swing.JTextField nameField;
+    private javax.swing.JTextField nameField1;
+    private java.awt.Button removeButton;
+    private javax.swing.JPanel removePanel;
+    private javax.swing.JButton removeStudentButton;
+    private javax.swing.JTable removeStudentsTable;
+    private java.awt.Button searchButton;
+    private javax.swing.JTextField searchField;
+    private javax.swing.JPanel searchPanel;
+    private javax.swing.JTable searchStudentsTable;
+    private javax.swing.JPanel sidePanel;
+    private javax.swing.JButton updateStudentButton;
+    private java.awt.Button viewButton;
+    private javax.swing.JPanel viewPanel;
+    private javax.swing.JTable viewStudentsTable;
     // End of variables declaration//GEN-END:variables
 }

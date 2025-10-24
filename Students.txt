@@ -1,0 +1,100 @@
+9000,Ahmed Hassan,21,Male,Mechanical Engineering,3.2
+9001,Sara Mohamed,20,Female,Electrical Engineering,3.8
+9002,Omar Ali,22,Male,Civil Engineering,2.9
+9003,Fatma Youssef,19,Female,Computer Engineering,3.7
+9004,Youssef Ibrahim,23,Male,Architecture,2.5
+9005,Mariam Adel,21,Female,Biomedical Engineering,3.4
+9006,Khaled Nasser,20,Male,Industrial Engineering,2.8
+9007,Huda Sami,22,Female,Chemical Engineering,3.1
+9008,Amr Magdy,19,Male,Mechanical Engineering,3.6
+9009,Layla Omar,21,Female,Civil Engineering,3.0
+9010,Tarek Hussein,22,Male,Electrical Engineering,2.7
+9011,Salma Fathi,20,Female,Architecture,3.9
+9012,Mostafa Gamal,23,Male,Computer Engineering,3.3
+9013,Nour Ayman,21,Female,Biomedical Engineering,2.6
+9014,Adel Sherif,22,Male,Industrial Engineering,3.2
+9015,Reem Mahmoud,19,Female,Chemical Engineering,3.5
+9016,Hassan Kamal,21,Male,Mechanical Engineering,2.9
+9017,Dalia Karim,20,Female,Civil Engineering,3.1
+9018,Islam Taha,23,Male,Electrical Engineering,3.8
+9019,Mona Ragab,19,Female,Architecture,3.0
+9020,Karim Farouk,22,Male,Computer Engineering,3.6
+9021,Aya Lotfy,20,Female,Biomedical Engineering,2.7
+9022,Ehab Adel,21,Male,Industrial Engineering,3.9
+9023,Rania Ezzat,22,Female,Chemical Engineering,3.4
+9024,Nader Fouad,19,Male,Mechanical Engineering,3.3
+9025,Dina Hamdy,21,Female,Civil Engineering,2.5
+9026,Yassin Wael,23,Male,Electrical Engineering,3.7
+9027,Farah Nabil,20,Female,Architecture,3.1
+9028,Mohamed Hany,21,Male,Computer Engineering,2.8
+9029,Heba Saad,22,Female,Biomedical Engineering,3.2
+9030,Sherif Saber,19,Male,Industrial Engineering,3.9
+9031,Rawan Khalil,20,Female,Chemical Engineering,2.9
+9032,Basel Mahmoud,21,Male,Mechanical Engineering,3.5
+9033,Nada Sameh,22,Female,Civil Engineering,3.4
+9034,Walid Anwar,23,Male,Electrical Engineering,2.6
+9035,Nourhan Fadel,19,Female,Architecture,3.8
+9036,Ahmed Sayed,20,Male,Computer Engineering,3.0
+9037,Lina Sherif,21,Female,Biomedical Engineering,3.1
+9038,Ibrahim Rami,22,Male,Industrial Engineering,3.6
+9039,Salma Adel,19,Female,Chemical Engineering,3.7
+9040,Magdy Osama,23,Male,Mechanical Engineering,2.8
+9041,Riham Zaki,20,Female,Civil Engineering,3.2
+9042,Tamer Naguib,21,Male,Electrical Engineering,3.3
+9043,Hager Lotfy,22,Female,Architecture,3.9
+9044,Moustafa Said,19,Male,Computer Engineering,2.7
+9045,Mariam Helmy,20,Female,Biomedical Engineering,3.6
+9046,Ahmed Adel,22,Male,Industrial Engineering,3.0
+9047,Yara Khaled,21,Female,Chemical Engineering,2.9
+9048,Hany Kamel,23,Male,Mechanical Engineering,3.4
+9049,Sara Adel,19,Female,Civil Engineering,3.5
+9050,Mahmoud Yasser,20,Male,Electrical Engineering,2.6
+9051,Eman Saber,21,Female,Architecture,3.8
+9052,Omar Fathy,22,Male,Computer Engineering,3.1
+9053,Dina Khalil,23,Female,Biomedical Engineering,3.7
+9054,Karim Tamer,20,Male,Industrial Engineering,2.5
+9055,Rania Mostafa,21,Female,Chemical Engineering,3.0
+9056,Ayman Hassan,22,Male,Mechanical Engineering,3.9
+9057,Yasmin Osama,19,Female,Civil Engineering,3.4
+9058,Islam Nasser,21,Male,Electrical Engineering,3.2
+9059,Rana Hany,22,Female,Architecture,3.5
+9060,Adel Magdy,23,Male,Computer Engineering,2.9
+9061,Hoda Ayman,20,Female,Biomedical Engineering,3.1
+9062,Fady Sherif,21,Male,Industrial Engineering,3.6
+9063,Mona Ezz,22,Female,Chemical Engineering,3.3
+9064,Karim Gamal,19,Male,Mechanical Engineering,3.8
+9065,Layla Mostafa,20,Female,Civil Engineering,3.0
+9066,Ehab Taha,21,Male,Electrical Engineering,3.7
+9067,Farida Adel,23,Female,Architecture,2.8
+9068,Nader Ali,22,Male,Computer Engineering,3.2
+9069,Hana Khaled,19,Female,Biomedical Engineering,3.6
+9070,Walid Fathi,21,Male,Industrial Engineering,2.7
+9071,Doaa Hossam,20,Female,Chemical Engineering,3.4
+9072,Ahmed Gamal,23,Male,Mechanical Engineering,3.3
+9073,Mariam Salah,22,Female,Civil Engineering,3.5
+9074,Hisham Saad,19,Male,Electrical Engineering,2.9
+9075,Noor Ehab,21,Female,Architecture,3.8
+9076,Mostafa Adel,20,Male,Computer Engineering,3.4
+9077,Reem Hassan,23,Female,Biomedical Engineering,3.7
+9078,Tarek Fadel,21,Male,Industrial Engineering,2.6
+9079,Sara Magdy,20,Female,Chemical Engineering,3.9
+9080,Youssef Nabil,22,Male,Mechanical Engineering,3.1
+9081,Hala Lotfy,19,Female,Civil Engineering,3.2
+9082,Khaled Rami,21,Male,Electrical Engineering,3.4
+9083,Dalia Hussein,23,Female,Architecture,2.7
+9084,Islam Adel,22,Male,Computer Engineering,3.8
+9085,Yasmin Farouk,20,Female,Biomedical Engineering,3.5
+9086,Amr Hassan,19,Male,Industrial Engineering,3.2
+9087,Rana Fathi,21,Female,Chemical Engineering,3.0
+9088,Mahmoud Adel,22,Male,Mechanical Engineering,3.6
+9089,Riham Samir,20,Female,Civil Engineering,3.4
+9090,Ehab Khalil,23,Male,Electrical Engineering,2.8
+9091,Mona Hamed,21,Female,Architecture,3.1
+9092,Ahmed Saber,19,Male,Computer Engineering,3.7
+9093,Fatma Lotfy,20,Female,Biomedical Engineering,2.9
+9094,Yassin Magdy,21,Male,Industrial Engineering,3.5
+9095,Hagar Adel,22,Female,Chemical Engineering,3.3
+9096,Karim Osama,23,Male,Mechanical Engineering,2.7
+9097,Nourhan Salah,20,Female,Civil Engineering,3.6
+9098,Tamer Ayman,21,Male,Electrical Engineering,3.8
+9099,Laila Hassan,22,Female,Architecture,3.2

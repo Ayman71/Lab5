@@ -6,6 +6,7 @@ package BackEnd;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -30,6 +31,10 @@ public class AdminOperations {
             return true;
         }
     }
+    
+    public ArrayList<Student> getStudents() {
+        return studentDatabase.getStudentsArrayList();
+    }
 
     public void deleteStudent(int studentId) throws IOException {
         studentDatabase.deleteStudent(studentId);
@@ -39,7 +44,7 @@ public class AdminOperations {
         studentDatabase.updateStudent(studentId, updatedStudent);
     }
 
-    private void logout() throws FileNotFoundException {
+    public void logout() throws FileNotFoundException {
         studentDatabase.saveToFile();
     }
 }

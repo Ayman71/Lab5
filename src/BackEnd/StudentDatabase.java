@@ -77,6 +77,9 @@ public class StudentDatabase {
             }
         }
     }
+    public ArrayList<Student> getStudentsArrayList(){
+        return students;
+    }
 
     void saveToFile() throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(filename);

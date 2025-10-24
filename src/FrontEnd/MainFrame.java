@@ -4,9 +4,17 @@
  */
 package FrontEnd;
 
+import BackEnd.AdminOperations;
+import BackEnd.Student;
 import java.awt.CardLayout;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -20,8 +28,9 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     private DefaultTableModel studentsTableModel;
-    TableRowSorter<DefaultTableModel> sorter;
-    
+    private TableRowSorter<DefaultTableModel> sorter;
+    private AdminOperations admin;
+
     public MainFrame() {
         initComponents();
         this.setSize(1000, 600);
@@ -38,8 +47,31 @@ public class MainFrame extends javax.swing.JFrame {
         searchStudentsTable.setModel(studentsTableModel);
         removeStudentsTable.setModel(studentsTableModel);
         modifyStudentsTable.setModel(studentsTableModel);
+        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+        leftRenderer.setHorizontalAlignment(SwingConstants.LEFT);
+
+        for (int i = 0; i < viewStudentsTable.getColumnCount(); i++) {
+            viewStudentsTable.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
+            addStudentsTable.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
+            searchStudentsTable.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
+            modifyStudentsTable.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
+            removeStudentsTable.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
+        }
         searchStudentsTable.setRowSorter(sorter);
-        
+        try {
+            admin = new AdminOperations();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error retreiving Database", "Database Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Error retreiving Database", "Database Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        studentsTableModel.setRowCount(0);
+        for (Student s : admin.getStudents()) {
+            studentsTableModel.addRow(new Object[]{s.getStudentId(), s.getFullName(), s.getAge(), s.getGender(), s.getDepartment(), s.getGpa()});
+        }
+
     }
 
     /**
@@ -229,7 +261,8 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Add New Student");
 
-        genderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+        genderComboBox.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        genderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
         genderComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 genderComboBoxActionPerformed(evt);
@@ -912,7 +945,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         int row = modifyStudentsTable.convertRowIndexToModel(selectedRow);
-        
 
         studentsTableModel.setValueAt(Integer.parseInt(idField1.getText()), row, 0);
         studentsTableModel.setValueAt(nameField1.getText(), row, 1);
@@ -920,7 +952,7 @@ public class MainFrame extends javax.swing.JFrame {
         studentsTableModel.setValueAt(genderComboBox1.getSelectedItem().toString().trim(), row, 3);
         studentsTableModel.setValueAt(departmentField1.getText(), row, 4);
         studentsTableModel.setValueAt(Double.parseDouble(gpaField1.getText()), row, 5);
-
+        
         JOptionPane.showMessageDialog(this, "Student updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
         clearFormButtonActionPerformed(evt);
 
@@ -951,12 +983,12 @@ public class MainFrame extends javax.swing.JFrame {
             departmentField1.setText(studentsTableModel.getValueAt(row, 4).toString());
             gpaField1.setText(studentsTableModel.getValueAt(row, 5).toString());
         }
-        
+
     }//GEN-LAST:event_modifyStudentsTableMouseClicked
 
     private void searchFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyReleased
         // TODO add your handling code here:
-        sorter.setRowFilter(RowFilter.regexFilter("(?i)"+searchField.getText()));
+        sorter.setRowFilter(RowFilter.regexFilter("(?i)" + searchField.getText()));
     }//GEN-LAST:event_searchFieldKeyReleased
 
     /**

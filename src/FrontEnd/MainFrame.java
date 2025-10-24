@@ -6,7 +6,9 @@ package FrontEnd;
 
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -18,7 +20,8 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     private DefaultTableModel studentsTableModel;
-
+    TableRowSorter<DefaultTableModel> sorter;
+    
     public MainFrame() {
         initComponents();
         this.setSize(1000, 600);
@@ -29,11 +32,14 @@ public class MainFrame extends javax.swing.JFrame {
         mainPanel.add(modifyPanel, "modify");
         mainPanel.add(searchPanel, "search");
         studentsTableModel = (DefaultTableModel) addStudentsTable.getModel();
-
-        addStudentsTable.setModel(studentsTableModel);
+        sorter = new TableRowSorter<>(studentsTableModel);
         viewStudentsTable.setModel(studentsTableModel);
+        addStudentsTable.setModel(studentsTableModel);
+        searchStudentsTable.setModel(studentsTableModel);
         removeStudentsTable.setModel(studentsTableModel);
         modifyStudentsTable.setModel(studentsTableModel);
+        searchStudentsTable.setRowSorter(sorter);
+        
     }
 
     /**
@@ -49,7 +55,7 @@ public class MainFrame extends javax.swing.JFrame {
         viewPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane5 = new javax.swing.JScrollPane();
         viewStudentsTable = new javax.swing.JTable();
         addPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -96,6 +102,9 @@ public class MainFrame extends javax.swing.JFrame {
         gpaField1 = new javax.swing.JTextField();
         nameField1 = new javax.swing.JTextField();
         searchPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        searchStudentsTable = new javax.swing.JTable();
+        searchField = new javax.swing.JTextField();
         sidePanel = new javax.swing.JPanel();
         viewButton = new java.awt.Button();
         addButton = new java.awt.Button();
@@ -146,7 +155,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         viewStudentsTable.setFocusable(false);
         viewStudentsTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(viewStudentsTable);
+        jScrollPane5.setViewportView(viewStudentsTable);
 
         javax.swing.GroupLayout viewPanelLayout = new javax.swing.GroupLayout(viewPanel);
         viewPanel.setLayout(viewPanelLayout);
@@ -160,7 +169,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(296, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
                 .addContainerGap())
         );
         viewPanelLayout.setVerticalGroup(
@@ -170,9 +179,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         mainPanel.add(viewPanel, "card2");
@@ -220,7 +229,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Add New Student");
 
-        genderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+        genderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
         genderComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 genderComboBoxActionPerformed(evt);
@@ -623,15 +632,62 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainPanel.add(modifyPanel, "card5");
 
+        searchStudentsTable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        searchStudentsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "Age", "Gender", "Department", "GPA"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        searchStudentsTable.setFocusable(false);
+        searchStudentsTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(searchStudentsTable);
+
+        searchField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        searchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchFieldKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 896, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addGap(232, 232, 232)
+                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         searchPanelLayout.setVerticalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 572, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         mainPanel.add(searchPanel, "card6");
@@ -898,6 +954,11 @@ public class MainFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_modifyStudentsTableMouseClicked
 
+    private void searchFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyReleased
+        // TODO add your handling code here:
+        sorter.setRowFilter(RowFilter.regexFilter("(?i)"+searchField.getText()));
+    }//GEN-LAST:event_searchFieldKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -974,6 +1035,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private java.awt.Button logoutButton;
     private javax.swing.JPanel mainPanel;
     private java.awt.Button modifyButton;
@@ -986,7 +1048,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton removeStudentButton;
     private javax.swing.JTable removeStudentsTable;
     private java.awt.Button searchButton;
+    private javax.swing.JTextField searchField;
     private javax.swing.JPanel searchPanel;
+    private javax.swing.JTable searchStudentsTable;
     private javax.swing.JPanel sidePanel;
     private javax.swing.JButton updateStudentButton;
     private java.awt.Button viewButton;

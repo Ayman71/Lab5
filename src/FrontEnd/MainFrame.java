@@ -156,6 +156,7 @@ public class MainFrame extends javax.swing.JFrame {
         logoutButton = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Students Managment System");
         setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
@@ -222,8 +223,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         mainPanel.add(viewPanel, "card2");
@@ -738,7 +739,6 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
 
         sidePanel.setBackground(new java.awt.Color(204, 204, 204));
-        sidePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         sidePanel.setForeground(new java.awt.Color(0, 153, 204));
         sidePanel.setPreferredSize(new java.awt.Dimension(120, 0));
         sidePanel.setLayout(new javax.swing.BoxLayout(sidePanel, javax.swing.BoxLayout.Y_AXIS));

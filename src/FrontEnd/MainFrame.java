@@ -12,8 +12,10 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -30,6 +32,7 @@ public class MainFrame extends javax.swing.JFrame {
     private DefaultTableModel studentsTableModel;
     private TableRowSorter<DefaultTableModel> sorter;
     private AdminOperations admin;
+    private Student oldStudent;
 
     public MainFrame() {
         initComponents();
@@ -49,6 +52,11 @@ public class MainFrame extends javax.swing.JFrame {
         modifyStudentsTable.setModel(studentsTableModel);
         DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
         leftRenderer.setHorizontalAlignment(SwingConstants.LEFT);
+        viewStudentsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        addStudentsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        searchStudentsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        removeStudentsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        modifyStudentsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         for (int i = 0; i < viewStudentsTable.getColumnCount(); i++) {
             viewStudentsTable.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
@@ -57,6 +65,8 @@ public class MainFrame extends javax.swing.JFrame {
             modifyStudentsTable.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
             removeStudentsTable.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
         }
+        viewStudentsTable.setRowSorter(new TableRowSorter<>(studentsTableModel));
+        removeStudentsTable.setRowSorter(new TableRowSorter<>(studentsTableModel));
         searchStudentsTable.setRowSorter(sorter);
         try {
             admin = new AdminOperations();
@@ -795,7 +805,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_viewButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+            admin.logout();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         StudentLogin studentLogin = new StudentLogin();
         this.setVisible(false);
         studentLogin.setVisible(true);
@@ -867,7 +881,24 @@ public class MainFrame extends javax.swing.JFrame {
             gpaField.setText("");
             return;
         }
+        Student newStudent = new Student(id, name, age, gender, department, gpa);
+        try {
+            if (!admin.addStudent(newStudent)) {
+                JOptionPane.showMessageDialog(this, "Student with the same ID already exists!", "Insertion Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        } catch (IOException ex) {
+
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        addStudentsTable.setRowSorter(null);
         studentsTableModel.addRow(new Object[]{id, name, age, gender, department, gpa});
+        addStudentsTable.setAutoCreateRowSorter(true);
+        addStudentsTable.scrollRectToVisible(addStudentsTable.getCellRect(addStudentsTable.getRowCount() - 1, 0, true));
+        addStudentsTable.setRowSelectionInterval(addStudentsTable.getRowCount() - 1, addStudentsTable.getRowCount() - 1);
         JOptionPane.showMessageDialog(this, "Student Added Successfully!", "Student Added", JOptionPane.INFORMATION_MESSAGE);
         clearFormButtonActionPerformed(evt);
 
@@ -886,13 +917,27 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void removeStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeStudentButtonActionPerformed
         // TODO add your handling code here:
-        if (removeStudentsTable.getSelectedRow() == -1) {
+        int row = removeStudentsTable.getSelectedRow();
+        if (row == -1) {
             JOptionPane.showMessageDialog(this, "Please select a student to remove.", "Selection Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        int choice = JOptionPane.showConfirmDialog(this, "Are you sure you want to remove this studen?", "Confirm Removal", JOptionPane.YES_NO_OPTION);
+        int mRow = removeStudentsTable.convertRowIndexToModel(row);
+        int id = (int) studentsTableModel.getValueAt(mRow, 0);
+
+        int choice = JOptionPane.showConfirmDialog(this, "Are you sure you want to remove this student?", "Confirm Removal", JOptionPane.YES_NO_OPTION);
         if (choice == JOptionPane.YES_OPTION) {
-            studentsTableModel.removeRow(removeStudentsTable.getSelectedRow());
+            try {
+                admin.deleteStudent(id);
+                removeStudentsTable.setRowSorter(null);
+                studentsTableModel.removeRow(mRow);
+                removeStudentsTable.setAutoCreateRowSorter(true);
+                removeStudentsTable.clearSelection();
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Please select a student to remove.", "Selection Error", JOptionPane.ERROR_MESSAGE);
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
     }//GEN-LAST:event_removeStudentButtonActionPerformed
 
@@ -935,9 +980,15 @@ public class MainFrame extends javax.swing.JFrame {
             gpaField1.setText("");
             return;
         }
-//        studentsTableModel.addRow(new Object[]{id, name, age, gender, department, gpa});
-//        JOptionPane.showMessageDialog(this, "Student Added Successfully!", "Student Added", JOptionPane.INFORMATION_MESSAGE);
-//        clearFormButtonActionPerformed(evt);
+        Student updatedStudent = new Student(id, name, age, gender, department, gpa);
+
+        try {
+            admin.updateStudent(oldStudent.getStudentId(), updatedStudent);
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        clearFormButtonActionPerformed(evt);
         int selectedRow = modifyStudentsTable.getSelectedRow();
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(this, "Please select a student to update.");
@@ -945,27 +996,25 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         int row = modifyStudentsTable.convertRowIndexToModel(selectedRow);
-
         studentsTableModel.setValueAt(Integer.parseInt(idField1.getText()), row, 0);
         studentsTableModel.setValueAt(nameField1.getText(), row, 1);
         studentsTableModel.setValueAt(Integer.parseInt(ageField1.getText()), row, 2);
         studentsTableModel.setValueAt(genderComboBox1.getSelectedItem().toString().trim(), row, 3);
         studentsTableModel.setValueAt(departmentField1.getText(), row, 4);
         studentsTableModel.setValueAt(Double.parseDouble(gpaField1.getText()), row, 5);
-        
-        JOptionPane.showMessageDialog(this, "Student updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Student Modified Successfully!", "Student Modified", JOptionPane.INFORMATION_MESSAGE);
         clearFormButtonActionPerformed(evt);
 
     }//GEN-LAST:event_updateStudentButtonActionPerformed
 
     private void clearFormButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFormButton1ActionPerformed
         // TODO add your handling code here:
-        idField.setText("");
-        nameField.setText("");
-        ageField.setText("");
-        genderComboBox.setSelectedIndex(0);
-        departmentField.setText("");
-        gpaField.setText("");
+        idField1.setText("");
+        nameField1.setText("");
+        ageField1.setText("");
+        genderComboBox1.setSelectedIndex(0);
+        departmentField1.setText("");
+        gpaField1.setText("");
     }//GEN-LAST:event_clearFormButton1ActionPerformed
 
     private void genderComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderComboBox1ActionPerformed
@@ -974,15 +1023,23 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void modifyStudentsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyStudentsTableMouseClicked
         // TODO add your handling code here:
-        int row = modifyStudentsTable.getSelectedRow();
+        int selectedRow = modifyStudentsTable.getSelectedRow();
+        int row = modifyStudentsTable.convertRowIndexToModel(selectedRow);
+        int id = Integer.parseInt(studentsTableModel.getValueAt(row, 0).toString());
+        String name = studentsTableModel.getValueAt(row, 1).toString();
+        int age = Integer.parseInt(studentsTableModel.getValueAt(row, 2).toString());
+        Object gender = studentsTableModel.getValueAt(row, 3);
+        String department = studentsTableModel.getValueAt(row, 4).toString();
+        double gpa = Double.parseDouble(studentsTableModel.getValueAt(row, 5).toString());
         if (row != -1) {
-            idField1.setText(studentsTableModel.getValueAt(row, 0).toString());
-            nameField1.setText(studentsTableModel.getValueAt(row, 1).toString());
-            ageField1.setText(studentsTableModel.getValueAt(row, 2).toString());
-            genderComboBox1.setSelectedItem(studentsTableModel.getValueAt(row, 3));
-            departmentField1.setText(studentsTableModel.getValueAt(row, 4).toString());
-            gpaField1.setText(studentsTableModel.getValueAt(row, 5).toString());
+            idField1.setText(String.valueOf(id));
+            nameField1.setText(name);
+            ageField1.setText(String.valueOf(age));
+            genderComboBox1.setSelectedItem(gender);
+            departmentField1.setText(department);
+            gpaField1.setText(String.valueOf(gpa));
         }
+        oldStudent = new Student(id, name, age, name, department, gpa);
 
     }//GEN-LAST:event_modifyStudentsTableMouseClicked
 

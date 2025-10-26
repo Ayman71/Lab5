@@ -5,6 +5,7 @@
 package FrontEnd;
 
 import Info.LoginInfo;
+import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
 import java.io.FileNotFoundException;
 import javax.swing.JOptionPane;
@@ -52,7 +53,7 @@ public class StudentLogin extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Password:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 150, 144, 25);
+        jLabel2.setBounds(50, 150, 144, 25);
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(204, 204, 255));
@@ -62,14 +63,14 @@ public class StudentLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(140, 110, 149, 35);
+        jTextField1.setBounds(170, 100, 149, 35);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Username:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 110, 144, 25);
+        jLabel3.setBounds(50, 110, 144, 25);
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setText("Login");
@@ -79,7 +80,7 @@ public class StudentLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(150, 190, 127, 46);
+        jButton1.setBounds(180, 190, 127, 46);
 
         jPasswordField1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +89,7 @@ public class StudentLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(140, 150, 149, 35);
+        jPasswordField1.setBounds(170, 140, 149, 35);
 
         jCheckBox1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jCheckBox1.setText("Show password");
@@ -98,7 +99,7 @@ public class StudentLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jCheckBox1);
-        jCheckBox1.setBounds(300, 160, 129, 24);
+        jCheckBox1.setBounds(330, 150, 129, 24);
 
         pack();
         setLocationRelativeTo(null);
@@ -147,33 +148,13 @@ public class StudentLogin extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StudentLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StudentLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StudentLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StudentLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+            // Set FlatLaf Dark look and feel
+            FlatDarkLaf.setup();
 
-        /* Create and display the form */
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize FlatLaf");
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new StudentLogin().setVisible(true);

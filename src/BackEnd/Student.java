@@ -80,7 +80,7 @@ public class Student extends Record {
 
     @Override
     public String getSearchKey() {
-        return String.valueOf(getStudentId()); 
+        return String.valueOf(this.getStudentId()); 
     }
     
     

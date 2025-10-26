@@ -81,8 +81,11 @@ public class MainFrame extends javax.swing.JFrame {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         studentsTableModel.setRowCount(0);
-        for (Student s : admin.getStudents()) {
-            studentsTableModel.addRow(new Object[]{s.getStudentId(), s.getFullName(), s.getAge(), s.getGender(), s.getDepartment(), s.getGpa()});
+        for (BackEnd.Record r : admin.getStudents()) {
+            if (r instanceof Student s) {
+                studentsTableModel.addRow(new Object[]{s.getStudentId(), s.getFullName(), s.getAge(), s.getGender(), s.getDepartment(), s.getGpa()});
+
+            }
         }
 
     }
@@ -653,13 +656,13 @@ public class MainFrame extends javax.swing.JFrame {
         modifyPanelLayout.setVerticalGroup(
             modifyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(modifyPanelLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
-            .addGroup(modifyPanelLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
 
         mainPanel.add(modifyPanel, "card5");
@@ -729,7 +732,6 @@ public class MainFrame extends javax.swing.JFrame {
         sidePanel.setBackground(new java.awt.Color(60, 63, 65));
         sidePanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 5, 0, 0));
         sidePanel.setForeground(new java.awt.Color(0, 153, 204));
-        sidePanel.setAlignmentX(0.5F);
         sidePanel.setPreferredSize(new java.awt.Dimension(120, 0));
         sidePanel.setLayout(new javax.swing.BoxLayout(sidePanel, javax.swing.BoxLayout.Y_AXIS));
 

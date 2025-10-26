@@ -20,11 +20,13 @@ public class StudentDatabase extends Database {
 
     }
 
- 
-   
-
+    /**
+     *
+     * @param line
+     * @return
+     */
     @Override
-    public Student createStudentFrom(String line) {
+    public Student createRecordFrom(String line) {
         String[] tokens = line.split(",");
         int id = Integer.parseInt(tokens[0]);
         String name = tokens[1];

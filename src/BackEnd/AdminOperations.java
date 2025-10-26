@@ -24,24 +24,24 @@ public class AdminOperations {
     }
 
     public boolean addStudent(Student student) throws IOException, ClassNotFoundException {
-        if (studentDatabase.contains(student.getStudentId())) {
+        if (studentDatabase.contains(student.getSearchKey())) {
             return false;
         } else {
-            studentDatabase.insertStudent(student);
+            studentDatabase.insertRecord(student);
             return true;
         }
     }
 
-    public ArrayList<Student> getStudents() {
+    public ArrayList<Record> getStudents() {
         return studentDatabase.getStudentsArrayList();
     }
 
     public void deleteStudent(int studentId) throws IOException {
-        studentDatabase.deleteStudent(studentId);
+        studentDatabase.deleteRecord(String.valueOf(studentId));
     }
 
     public void updateStudent(int studentId, Student updatedStudent) throws IOException {
-        studentDatabase.updateStudent(studentId, updatedStudent);
+        studentDatabase.updateRecord(String.valueOf(studentId), updatedStudent);
     }
 
     public void logout() throws FileNotFoundException {

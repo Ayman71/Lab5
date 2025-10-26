@@ -862,21 +862,47 @@ public class MainFrame extends javax.swing.JFrame {
         int id, age;
         double gpa;
 
-        try {
+       try {
             id = Integer.parseInt(idText);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ID must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            idField.setText("");
+            return;
+        }
+        try {
             age = Integer.parseInt(ageText);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "ID & Age must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
-            idField.setText("");
+            JOptionPane.showMessageDialog(this, " Age must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
+
             ageField.setText("");
             return;
         }
+        
+        char[] chars = name.toCharArray();
+        for (char aChar : chars) {
+            if (Character.isDigit(aChar)) {
+                JOptionPane.showMessageDialog(this, "Name must contain only characters.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                nameField.setText("");
+                return;
+            }
+        }
+
+        char[] chars1 = department.toCharArray();
+        for (char aChar1 : chars1) {
+            if (Character.isDigit(aChar1)) {
+                JOptionPane.showMessageDialog(this, "Department must contain only characters.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                departmentField.setText("");
+                return;
+            }
+        }
+        
         try {
             gpa = Double.parseDouble(gpaText);
             if (gpa < 0.0 || gpa > 4.0) {
                 JOptionPane.showMessageDialog(this, "GPA must be between 0 & 4.", "Input Error", JOptionPane.ERROR_MESSAGE);
-                gpaField.setText("");
+                gpaField1.setText("");
                 return;
             }
 
@@ -963,14 +989,40 @@ public class MainFrame extends javax.swing.JFrame {
 
         try {
             id = Integer.parseInt(idText);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ID must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            idField1.setText("");
+            return;
+        }
+        try {
             age = Integer.parseInt(ageText);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "ID & Age must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
-            idField1.setText("");
+            JOptionPane.showMessageDialog(this, " Age must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
+
             ageField1.setText("");
             return;
         }
+        
+        char[] chars = name.toCharArray();
+        for (char aChar : chars) {
+            if (Character.isDigit(aChar)) {
+                JOptionPane.showMessageDialog(this, "Name must contain only characters.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                nameField1.setText("");
+                return;
+            }
+        }
+
+        char[] chars1 = department.toCharArray();
+        for (char aChar1 : chars1) {
+            if (Character.isDigit(aChar1)) {
+                JOptionPane.showMessageDialog(this, "Department must contain only characters.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                departmentField1.setText("");
+                return;
+            }
+        }
+        
         try {
             gpa = Double.parseDouble(gpaText);
             if (gpa < 0.0 || gpa > 4.0) {

@@ -22,6 +22,7 @@ public class StudentLogin extends javax.swing.JFrame {
     public StudentLogin() {
         initComponents();
         this.setSize(500, 400);
+        jPasswordField1.addActionListener(e -> jButton1.doClick());
     }
 
     /**

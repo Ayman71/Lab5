@@ -14,7 +14,6 @@ import java.io.Serializable;
  */
 public abstract class Record implements Serializable{
     
-    
         public abstract String getSearchKey();
         
     

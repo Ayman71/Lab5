@@ -16,73 +16,73 @@ import java.util.Scanner;
  */
 public abstract class Database {
     
-    private ArrayList<Student> students;
+    private ArrayList<Record> records;
     private String filename; 
     
      public Database(String filename) {
         this.filename = filename;
-        students = new ArrayList<>();
+        this.records = new ArrayList<>();
     }
 
     
     public void readFromFile() throws FileNotFoundException {
         File file = new File(filename);
         Scanner scanner = new Scanner(file);
-        students = new ArrayList<Student>();
+        records = new ArrayList<>();
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            Student student = createStudentFrom(line);
-            students.add(student);
+            Record record = createRecordFrom(line);
+            records.add(record);
         }
     }
     
     
-    public abstract Student createStudentFrom(String line);
+    public abstract Record createRecordFrom(String line);
     
-    public boolean contains(int id) {
-        for (Student student : students) {
-            if (student.getStudentId() == id) {
+    public boolean contains(String id) {
+        for (Record record : records) {
+            if (record.getSearchKey().equals(id)) {
                 return true;
             }
         }
         return false;
     }
     
-       public void insertStudent(Student student) {
-        students.add(student);
+       public void insertRecord(Record record) {
+        records.add(record);
     }
 
     
-      public void deleteStudent(int studentId) {
-        for (int i = 0; i < students.size(); i++) {
-            if (studentId == students.get(i).getStudentId()) {
-                students.remove(i);
+      public void deleteRecord(String studentId) {
+        for (int i = 0; i < records.size(); i++) {
+            if (String.valueOf(studentId).equals(records.get(i).getSearchKey())) {
+                records.remove(i);
             }
         }
     }
     
     
     
-    public void updateStudent(int studentId, Student updatedStudent) {
-        for (int i = 0; i < students.size(); i++) {
-            if (studentId == students.get(i).getStudentId()) {
-                students.remove(i);
-                students.add(updatedStudent);
+    public void updateRecord(String studentId, Student updatedStudent) {
+        for (int i = 0; i < records.size(); i++) {
+            if (String.valueOf(studentId).equals(records.get(i).getSearchKey())) {
+                records.remove(i);
+                records.add(updatedStudent);
             }
         }
     }
     
 
-    public ArrayList<Student> getStudentsArrayList() {
-        return students;
+    public ArrayList<Record> getStudentsArrayList() {
+        return records;
     }
     
     
       public void saveToFile() throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(filename);
-        for (Student student : students) {
-            pw.println(student.lineRepresentation());
+        for (Record record : records) {
+            pw.println(record.lineRepresentation());
         }
         pw.close();
     }

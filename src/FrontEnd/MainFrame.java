@@ -81,8 +81,11 @@ public class MainFrame extends javax.swing.JFrame {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         studentsTableModel.setRowCount(0);
-        for (Student s : admin.getStudents()) {
-            studentsTableModel.addRow(new Object[]{s.getStudentId(), s.getFullName(), s.getAge(), s.getGender(), s.getDepartment(), s.getGpa()});
+        for (BackEnd.Record r : admin.getStudents()) {
+            if (r instanceof Student s) {
+                studentsTableModel.addRow(new Object[]{s.getStudentId(), s.getFullName(), s.getAge(), s.getGender(), s.getDepartment(), s.getGpa()});
+
+            }
         }
 
     }
@@ -653,13 +656,13 @@ public class MainFrame extends javax.swing.JFrame {
         modifyPanelLayout.setVerticalGroup(
             modifyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(modifyPanelLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
-            .addGroup(modifyPanelLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
 
         mainPanel.add(modifyPanel, "card5");
@@ -729,7 +732,6 @@ public class MainFrame extends javax.swing.JFrame {
         sidePanel.setBackground(new java.awt.Color(60, 63, 65));
         sidePanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 5, 0, 0));
         sidePanel.setForeground(new java.awt.Color(0, 153, 204));
-        sidePanel.setAlignmentX(0.5F);
         sidePanel.setPreferredSize(new java.awt.Dimension(120, 0));
         sidePanel.setLayout(new javax.swing.BoxLayout(sidePanel, javax.swing.BoxLayout.Y_AXIS));
 
@@ -860,21 +862,47 @@ public class MainFrame extends javax.swing.JFrame {
         int id, age;
         double gpa;
 
-        try {
+       try {
             id = Integer.parseInt(idText);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ID must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            idField.setText("");
+            return;
+        }
+        try {
             age = Integer.parseInt(ageText);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "ID & Age must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
-            idField.setText("");
+            JOptionPane.showMessageDialog(this, " Age must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
+
             ageField.setText("");
             return;
         }
+        
+        char[] chars = name.toCharArray();
+        for (char aChar : chars) {
+            if (Character.isDigit(aChar)) {
+                JOptionPane.showMessageDialog(this, "Name must contain only characters.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                nameField.setText("");
+                return;
+            }
+        }
+
+        char[] chars1 = department.toCharArray();
+        for (char aChar1 : chars1) {
+            if (Character.isDigit(aChar1)) {
+                JOptionPane.showMessageDialog(this, "Department must contain only characters.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                departmentField.setText("");
+                return;
+            }
+        }
+        
         try {
             gpa = Double.parseDouble(gpaText);
             if (gpa < 0.0 || gpa > 4.0) {
                 JOptionPane.showMessageDialog(this, "GPA must be between 0 & 4.", "Input Error", JOptionPane.ERROR_MESSAGE);
-                gpaField.setText("");
+                gpaField1.setText("");
                 return;
             }
 
@@ -961,14 +989,40 @@ public class MainFrame extends javax.swing.JFrame {
 
         try {
             id = Integer.parseInt(idText);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ID must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            idField1.setText("");
+            return;
+        }
+        try {
             age = Integer.parseInt(ageText);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "ID & Age must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
-            idField1.setText("");
+            JOptionPane.showMessageDialog(this, " Age must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
+
             ageField1.setText("");
             return;
         }
+        
+        char[] chars = name.toCharArray();
+        for (char aChar : chars) {
+            if (Character.isDigit(aChar)) {
+                JOptionPane.showMessageDialog(this, "Name must contain only characters.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                nameField1.setText("");
+                return;
+            }
+        }
+
+        char[] chars1 = department.toCharArray();
+        for (char aChar1 : chars1) {
+            if (Character.isDigit(aChar1)) {
+                JOptionPane.showMessageDialog(this, "Department must contain only characters.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                departmentField1.setText("");
+                return;
+            }
+        }
+        
         try {
             gpa = Double.parseDouble(gpaText);
             if (gpa < 0.0 || gpa > 4.0) {

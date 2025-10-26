@@ -95,4 +95,4 @@
 9098,Tamer Ayman,21,Male,Electrical Engineering,3.8
 9099,Laila Hassan,22,Female,Architecture,3.2
 9083,Dalia Hussein,21,Female,Architecture,2.7
-9642,Ayman,21,Male,Computer,3.8
+6969,se7s,22,Male,SEX,4.0

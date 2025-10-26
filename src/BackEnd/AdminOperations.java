@@ -10,11 +10,11 @@ import java.util.ArrayList;
 
 /**
  *
- * @author islam
+ * @author islam && se7ssss
  */
 public class AdminOperations {
 
-    private StudentDatabase studentDatabase;
+    private InterfaceOfDatabase studentDatabase;
 
     // Constructor to set the filename
     public AdminOperations() throws IOException, ClassNotFoundException {
@@ -31,7 +31,7 @@ public class AdminOperations {
             return true;
         }
     }
-    
+
     public ArrayList<Student> getStudents() {
         return studentDatabase.getStudentsArrayList();
     }

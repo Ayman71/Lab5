@@ -14,7 +14,7 @@ import java.util.Scanner;
  *
  * @author islam
  */
-public class StudentDatabase {
+public class StudentDatabase implements InterfaceOfDatabase {
 
     private ArrayList<Student> students;
     private String filename;
@@ -24,6 +24,7 @@ public class StudentDatabase {
         students = new ArrayList<>();
     }
 
+    @Override
     public void readFromFile() throws FileNotFoundException {
         File file = new File(filename);
         Scanner scanner = new Scanner(file);
@@ -36,6 +37,7 @@ public class StudentDatabase {
         }
     }
 
+    @Override
     public Student createStudentFrom(String line) {
         String[] tokens = line.split(",");
         int id = Integer.parseInt(tokens[0]);
@@ -48,6 +50,7 @@ public class StudentDatabase {
         return student;
     }
 
+    @Override
     public boolean contains(int id) {
         for (Student student : students) {
             if (student.getStudentId() == id) {
@@ -57,11 +60,13 @@ public class StudentDatabase {
         return false;
     }
 
-    void insertStudent(Student student) {
+    @Override
+    public void insertStudent(Student student) {
         students.add(student);
     }
 
-    void deleteStudent(int studentId) {
+    @Override
+    public void deleteStudent(int studentId) {
         for (int i = 0; i < students.size(); i++) {
             if (studentId == students.get(i).getStudentId()) {
                 students.remove(i);
@@ -69,7 +74,8 @@ public class StudentDatabase {
         }
     }
 
-    void updateStudent(int studentId, Student updatedStudent) {
+    @Override
+    public void updateStudent(int studentId, Student updatedStudent) {
         for (int i = 0; i < students.size(); i++) {
             if (studentId == students.get(i).getStudentId()) {
                 students.remove(i);
@@ -77,11 +83,14 @@ public class StudentDatabase {
             }
         }
     }
-    public ArrayList<Student> getStudentsArrayList(){
+
+    @Override
+    public ArrayList<Student> getStudentsArrayList() {
         return students;
     }
 
-    void saveToFile() throws FileNotFoundException {
+    @Override
+    public void saveToFile() throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(filename);
         for (Student student : students) {
             pw.println(student.lineRepresentation());

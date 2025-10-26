@@ -7,6 +7,7 @@ package BackEnd;
 import java.io.Serializable;
 
 public class Student implements Serializable {
+
     private int studentId;
     private String fullName;
     private int age;
@@ -20,7 +21,9 @@ public class Student implements Serializable {
         this.age = age;
         this.gender = gender;
         this.department = department;
-        this.gpa = gpa;}
+        this.gpa = gpa;
+    }
+
     public int getStudentId() {
         return studentId;
     }

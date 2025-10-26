@@ -4,38 +4,24 @@
  */
 package BackEnd;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Scanner;
+
 
 /**
  *
- * @author islam
+ * @se7ss
  */
-public class StudentDatabase implements InterfaceOfDatabase {
+public class StudentDatabase extends Database {
 
-    private ArrayList<Student> students;
-    private String filename;
+    
 
-    public StudentDatabase(String filename) {
-        this.filename = filename;
-        students = new ArrayList<>();
+    public StudentDatabase(String filename ) {
+       
+          super(filename);
+
     }
 
-    @Override
-    public void readFromFile() throws FileNotFoundException {
-        File file = new File(filename);
-        Scanner scanner = new Scanner(file);
-        students = new ArrayList<Student>();
-
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            Student student = createStudentFrom(line);
-            students.add(student);
-        }
-    }
+ 
+   
 
     @Override
     public Student createStudentFrom(String line) {
@@ -50,51 +36,15 @@ public class StudentDatabase implements InterfaceOfDatabase {
         return student;
     }
 
-    @Override
-    public boolean contains(int id) {
-        for (Student student : students) {
-            if (student.getStudentId() == id) {
-                return true;
-            }
-        }
-        return false;
-    }
+   
+    
 
-    @Override
-    public void insertStudent(Student student) {
-        students.add(student);
-    }
+  
 
-    @Override
-    public void deleteStudent(int studentId) {
-        for (int i = 0; i < students.size(); i++) {
-            if (studentId == students.get(i).getStudentId()) {
-                students.remove(i);
-            }
-        }
-    }
+  
 
-    @Override
-    public void updateStudent(int studentId, Student updatedStudent) {
-        for (int i = 0; i < students.size(); i++) {
-            if (studentId == students.get(i).getStudentId()) {
-                students.remove(i);
-                students.add(updatedStudent);
-            }
-        }
-    }
 
-    @Override
-    public ArrayList<Student> getStudentsArrayList() {
-        return students;
-    }
 
-    @Override
-    public void saveToFile() throws FileNotFoundException {
-        PrintWriter pw = new PrintWriter(filename);
-        for (Student student : students) {
-            pw.println(student.lineRepresentation());
-        }
-        pw.close();
-    }
+
+  
 }

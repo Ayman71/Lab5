@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class AdminOperations {
 
-    private InterfaceOfDatabase studentDatabase;
+    private Database studentDatabase;
 
     // Constructor to set the filename
     public AdminOperations() throws IOException, ClassNotFoundException {

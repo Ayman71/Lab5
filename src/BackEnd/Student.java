@@ -4,9 +4,9 @@
  */
 package BackEnd;
 
-import java.io.Serializable;
 
-public class Student implements Serializable {
+
+public class Student extends Record {
 
     private int studentId;
     private String fullName;
@@ -72,8 +72,25 @@ public class Student implements Serializable {
     public String toString() {
         return "Student{" + "studentId=" + studentId + ", fullName=" + fullName + ", age=" + age + ", gender=" + gender + ", department=" + department + ", gpa=" + gpa + '}';
     }
-
+    
+ @Override
     public String lineRepresentation() {
         return studentId + "," + fullName + "," + age + "," + gender + "," + department + "," + gpa;
     }
+
+    @Override
+    public String getSearchKey() {
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
 }

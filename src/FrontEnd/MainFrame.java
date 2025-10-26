@@ -162,7 +162,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Students Managment System");
-        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
         mainPanel.setBackground(new java.awt.Color(204, 204, 204));
@@ -530,6 +529,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         idField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         idField1.setToolTipText("");
+        idField1.setEnabled(false);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("ID:");
@@ -979,7 +979,15 @@ public class MainFrame extends javax.swing.JFrame {
         String gender = genderComboBox1.getSelectedItem().toString().trim();
         String department = departmentField1.getText().trim();
         String gpaText = gpaField1.getText().trim();
-
+        int selectedRow = modifyStudentsTable.getSelectedRow();
+        int row = modifyStudentsTable.convertRowIndexToModel(selectedRow);
+        if(row == -1){
+            JOptionPane.showMessageDialog(this, "Please select a row to modify", "Selection Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(!idText.equals(studentsTableModel.getValueAt(row, 0).toString())){
+            
+        }
         if (idText.isEmpty() || name.isEmpty() || ageText.isEmpty() || gender.isEmpty() || department.isEmpty() || gpaText.isEmpty()) {
             JOptionPane.showMessageDialog(this, "All fields are required!", "Input Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -1045,13 +1053,13 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         clearFormButtonActionPerformed(evt);
-        int selectedRow = modifyStudentsTable.getSelectedRow();
+        
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(this, "Please select a student to update.");
             return;
         }
 
-        int row = modifyStudentsTable.convertRowIndexToModel(selectedRow);
+        
         studentsTableModel.setValueAt(Integer.parseInt(idField1.getText()), row, 0);
         studentsTableModel.setValueAt(nameField1.getText(), row, 1);
         studentsTableModel.setValueAt(Integer.parseInt(ageField1.getText()), row, 2);
@@ -1059,13 +1067,13 @@ public class MainFrame extends javax.swing.JFrame {
         studentsTableModel.setValueAt(departmentField1.getText(), row, 4);
         studentsTableModel.setValueAt(Double.parseDouble(gpaField1.getText()), row, 5);
         JOptionPane.showMessageDialog(this, "Student Modified Successfully!", "Student Modified", JOptionPane.INFORMATION_MESSAGE);
+        idField1.setText("");
         clearFormButtonActionPerformed(evt);
 
     }//GEN-LAST:event_updateStudentButtonActionPerformed
 
     private void clearFormButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFormButton1ActionPerformed
         // TODO add your handling code here:
-        idField1.setText("");
         nameField1.setText("");
         ageField1.setText("");
         genderComboBox1.setSelectedIndex(0);

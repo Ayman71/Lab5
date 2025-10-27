@@ -1,6 +1,4 @@
-9000,Ahmed Hassan,21,Male,Mechanical Engineering,3.2
 9001,Sara Mohamed,20,Female,Electrical Engineering,3.8
-9002,Omar Ali,22,Male,Civil Engineering,2.9
 9003,Fatma Youssef,19,Female,Computer Engineering,3.7
 9004,Youssef Ibrahim,23,Male,Architecture,2.5
 9005,Mariam Adel,21,Female,Biomedical Engineering,3.4
@@ -50,7 +48,6 @@
 9049,Sara Adel,19,Female,Civil Engineering,3.5
 9050,Mahmoud Yasser,20,Male,Electrical Engineering,2.6
 9051,Eman Saber,21,Female,Architecture,3.8
-9052,Omar Fathy,22,Male,Computer Engineering,3.1
 9053,Dina Khalil,23,Female,Biomedical Engineering,3.7
 9054,Karim Tamer,20,Male,Industrial Engineering,2.5
 9055,Rania Mostafa,21,Female,Chemical Engineering,3.0
@@ -98,3 +95,4 @@
 9097,Nourhan Salah,20,Female,Civil Engineering,3.6
 9098,Tamer Ayman,21,Male,Electrical Engineering,3.8
 9099,Laila Hassan,22,Female,Architecture,3.2
+9000,Ahmed Hassan,22,Male,Mechanical Engineering,3.2

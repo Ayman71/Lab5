@@ -64,7 +64,7 @@ public abstract class Database {
     
     
     
-    public void updateRecord(String studentId, Student updatedStudent) {
+    public void updateRecord(String studentId, Record updatedStudent) {
         for (int i = 0; i < records.size(); i++) {
             if (String.valueOf(studentId).equals(records.get(i).getSearchKey())) {
                 records.remove(i);

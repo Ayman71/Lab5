@@ -20,7 +20,7 @@ public class AdminOperations {
 
     }
 
-    public boolean addStudent(Student student) throws IOException, ClassNotFoundException {
+    public boolean addStudent(Record student) throws IOException, ClassNotFoundException {
         if (studentDatabase.contains(student.getSearchKey())) {
             return false;
         } else {
@@ -37,8 +37,8 @@ public class AdminOperations {
         studentDatabase.deleteRecord(String.valueOf(studentId));
     }
 
-    public void updateStudent(int studentId, Student updatedStudent) throws IOException {
-        studentDatabase.updateRecord(String.valueOf(studentId), updatedStudent);
+    public void updateStudent(int studentId, Record updatedStudent) throws IOException {
+        studentDatabase.updateRecord(String.valueOf(studentId), (Student) updatedStudent);
     }
 
     public void logout() throws FileNotFoundException {

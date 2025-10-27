@@ -1,6 +1,6 @@
 package BackEnd;
 
-public class Student extends Record {
+public class Student implements Record {
 
     private int studentId;
     private String fullName;

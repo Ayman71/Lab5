@@ -902,7 +902,7 @@ public class MainFrame extends javax.swing.JFrame {
             gpa = Double.parseDouble(gpaText);
             if (gpa < 0.0 || gpa > 4.0) {
                 JOptionPane.showMessageDialog(this, "GPA must be between 0 & 4.", "Input Error", JOptionPane.ERROR_MESSAGE);
-                gpaField1.setText("");
+                gpaField.setText("");
                 return;
             }
 

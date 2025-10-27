@@ -12,7 +12,7 @@ import java.io.Serializable;
  *
  * @author husse
  */
-public abstract class Record implements Serializable{
+public interface Record {
     
         public abstract String getSearchKey();
         

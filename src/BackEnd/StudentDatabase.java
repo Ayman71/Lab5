@@ -15,7 +15,6 @@ public class StudentDatabase extends Database {
     
 
     public StudentDatabase(String filename ) {
-       
           super(filename);
 
     }

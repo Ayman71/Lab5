@@ -864,6 +864,9 @@ public class MainFrame extends javax.swing.JFrame {
 
        try {
             id = Integer.parseInt(idText);
+            if(id <= 0){
+                JOptionPane.showMessageDialog(this, "ID must be a positive integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "ID must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -872,6 +875,9 @@ public class MainFrame extends javax.swing.JFrame {
         }
         try {
             age = Integer.parseInt(ageText);
+            if(age <= 0){
+                JOptionPane.showMessageDialog(this, "Age must be a positive integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, " Age must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -997,6 +1003,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         try {
             id = Integer.parseInt(idText);
+            if(id <= 0){
+                JOptionPane.showMessageDialog(this, "ID must be a positive integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "ID must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -1005,6 +1014,9 @@ public class MainFrame extends javax.swing.JFrame {
         }
         try {
             age = Integer.parseInt(ageText);
+            if(age <= 0){
+                JOptionPane.showMessageDialog(this, "Age must be a positive integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, " Age must be an integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
